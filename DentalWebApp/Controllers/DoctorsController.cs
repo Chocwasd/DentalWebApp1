@@ -211,15 +211,28 @@ namespace DentalWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var doctor = await _context.Doctors.FindAsync(id);
-            if (doctor != null)
+            var doctor = await _context.Doctors
+                .Include(d => d.Appointments)  // Include appointments
+                .FirstOrDefaultAsync(d => d.DoctorId == id);
+
+            if (doctor == null)
             {
-                _context.Doctors.Remove(doctor);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
+
+            // First, delete all appointments associated with the doctor
+            foreach (var appointment in doctor.Appointments)
+            {
+                _context.Appointments.Remove(appointment);  // Delete each appointment
+            }
+
+            // Then delete the doctor
+            _context.Doctors.Remove(doctor);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool DoctorExists(int id)
         {

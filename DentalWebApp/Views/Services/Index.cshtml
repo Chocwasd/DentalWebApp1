@@ -7,41 +7,37 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
+
+<table class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ServiceName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.ServiceName)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ServiceId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ServiceId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ServiceId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ServiceName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>
+                    <!-- Edit Button -->
+                    <a asp-action="Edit" asp-route-id="@item.ServiceId" class="btn btn-warning btn-sm">Edit</a>
+
+                    <!-- Details Button -->
+                    <a asp-action="Details" asp-route-id="@item.ServiceId" class="btn btn-info btn-sm">Details</a>
+
+                    <!-- Delete Button (optional confirmation) -->
+                    <a asp-action="Delete" asp-route-id="@item.ServiceId" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

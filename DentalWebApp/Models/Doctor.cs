@@ -21,5 +21,7 @@ namespace DentalWebApp.Models
         
         public byte[] ImageData { get; set; }
         
+            // The following line is the navigation property
+    public ICollection<Appointment> Appointments { get; set; }
     }
 }

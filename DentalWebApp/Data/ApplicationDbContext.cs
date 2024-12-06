@@ -16,19 +16,20 @@ namespace DentalWebApp.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure Doctor - Appointment relationship
+            // Configure Doctor - Appointment relationship with Cascade Delete
             modelBuilder.Entity<Appointment>()
                 .HasOne<Doctor>()
                 .WithMany()  // No navigation property in Doctor to appointments
                 .HasForeignKey(a => a.DoctorId)
-                .OnDelete(DeleteBehavior.Restrict);  // Prevent deletion of Doctor if there are Appointments
+                .OnDelete(DeleteBehavior.Cascade);  // Automatically delete Appointments when Doctor is deleted
 
-            // Configure Service - Appointment relationship
+            // Configure Service - Appointment relationship with Cascade Delete
             modelBuilder.Entity<Appointment>()
                 .HasOne<Service>()
                 .WithMany()  // No navigation property in Service to appointments
                 .HasForeignKey(a => a.ServiceId)
-                .OnDelete(DeleteBehavior.Restrict);  // Prevent deletion of Service if there are Appointments
+                .OnDelete(DeleteBehavior.Cascade);  // Automatically delete Appointments when Service is deleted
         }
+
     }
 }

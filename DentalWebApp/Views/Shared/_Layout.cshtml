@@ -55,14 +55,14 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" asp-controller="Home">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" asp-controller="Appointments">
+                <a class="nav-link" asp-controller="Appointments" asp-action="Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Appointments</span>
                 </a>
@@ -88,7 +88,7 @@
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" asp-controller ="Doctors">Manage Doctors</a>
+                        <a class="collapse-item" asp-controller ="Doctors" asp-action="Index">Manage Doctors</a>
 
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" asp-controller="Services">Manage Services</a>
+                        <a class="collapse-item" asp-controller="Services" asp-action="Index">Manage Services</a>
                     </div>
                 </div>
             </li>

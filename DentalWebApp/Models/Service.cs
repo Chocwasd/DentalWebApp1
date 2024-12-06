@@ -16,3 +16,4 @@ namespace DentalWebApp.Models
         public decimal Price { get; set; }
     }
 }
+    
