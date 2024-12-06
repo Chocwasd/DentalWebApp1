@@ -110,7 +110,19 @@ namespace DentalWebApp.Controllers
             {
                 return NotFound();
             }
-            return View(doctor);
+
+            // Convert Doctor to DoctorDTO
+            var doctorDto = new DoctorDTO
+            {
+                DoctorId = doctor.DoctorId,
+                FirstName = doctor.FirstName,
+                LastName = doctor.LastName,
+                Specialization = doctor.Specialization,
+                PhoneNumber = doctor.PhoneNumber
+                // Note: You can also set ImageData here if needed for the view
+            };
+
+            return View(doctorDto);
         }
 
         // POST: Doctors/Edit/5
