@@ -18,5 +18,8 @@ namespace DentalWebApp.Models
 
         [Phone]
         public string PhoneNumber { get; set; }
+        
+        public byte[] ImageData { get; set; }
+        
     }
 }
