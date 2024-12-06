@@ -4,39 +4,46 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Appointment Details</h1>
 
-<div>
-    <h4>Appointment</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AppointmentDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AppointmentDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PatientName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PatientName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PatientContact)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PatientContact)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.AppointmentId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <!-- Card for Appointment Details -->
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Appointment Information</h5>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <!-- Appointment Date -->
+                <dt class="col-sm-3"><strong>@Html.DisplayNameFor(model => model.AppointmentDate)</strong></dt>
+                <dd class="col-sm-9 text-muted">
+                    @Model.AppointmentDate.ToString("MMMM dd, yyyy - h:mm tt")
+                </dd>
+
+                <!-- Patient Name -->
+                <dt class="col-sm-3"><strong>@Html.DisplayNameFor(model => model.PatientName)</strong></dt>
+                <dd class="col-sm-9 text-muted">
+                    @Html.DisplayFor(model => model.PatientName)
+                </dd>
+
+                <!-- Patient Contact -->
+                <dt class="col-sm-3"><strong>@Html.DisplayNameFor(model => model.PatientContact)</strong></dt>
+                <dd class="col-sm-9 text-muted">
+                    @Html.DisplayFor(model => model.PatientContact)
+                </dd>
+
+                <!-- Notes -->
+                <dt class="col-sm-3"><strong>@Html.DisplayNameFor(model => model.Notes)</strong></dt>
+                <dd class="col-sm-9 text-muted">
+                    @Html.DisplayFor(model => model.Notes)
+                </dd>
+            </dl>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Edit" asp-route-id="@Model.AppointmentId" class="btn btn-warning btn-lg">Edit Appointment</a>
+                <a asp-action="Index" class="btn btn-secondary btn-lg">Back to List</a>
+            </div>
+        </div>
+    </div>
 </div>

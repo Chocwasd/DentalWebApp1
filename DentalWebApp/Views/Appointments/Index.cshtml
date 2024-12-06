@@ -1,53 +1,49 @@
 ﻿@model IEnumerable<DentalWebApp.Models.Appointment>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Appointments";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Appointments</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AppointmentDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PatientName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PatientContact)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AppointmentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PatientName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PatientContact)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AppointmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AppointmentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AppointmentId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a asp-action="Create" class="btn btn-success btn-lg">Add New Appointment</a>
+    </div>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Appointments List</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.AppointmentDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.PatientName)</th>
+                        <th>@Html.DisplayNameFor(model => model.PatientContact)</th>
+                        <th>@Html.DisplayNameFor(model => model.Notes)</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.AppointmentDate.ToString("MMMM dd, yyyy - h:mm tt")</td>
+
+                            <td>@Html.DisplayFor(modelItem => item.PatientName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PatientContact)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Notes)</td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.AppointmentId" class="btn btn-warning btn-sm">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.AppointmentId" class="btn btn-info btn-sm">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.AppointmentId" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this appointment?');">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
